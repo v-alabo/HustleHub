@@ -29,7 +29,7 @@ const Footer = () => {
 
     <div className='flex flex-wrap md:gap-20 justify-between gap-15'>
       <ul>
-      <p className='text-[18px] text-gray-600'>Services</p>
+      <p className='text-[18px] text-gray-600'>For Customers</p>
       <li className='my-2 text-[15px]'>
         <NavLink>Residential Cleaning</NavLink>
         </li>
