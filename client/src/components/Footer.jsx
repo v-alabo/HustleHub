@@ -48,7 +48,7 @@ const Footer = () => {
     </ul>
 
     <ul>
-      <p className='text-[18px] text-gray-600'>Company</p>
+      <p className='text-[18px] text-gray-600'>For Business</p>
       <li className='my-2 text-[15px]'>
         <NavLink>About</NavLink>
       </li>
