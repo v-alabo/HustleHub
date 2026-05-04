@@ -31,26 +31,26 @@ const Footer = () => {
       <ul>
       <p className='text-[18px] text-gray-600'>For Customers</p>
       <li className='my-2 text-[15px]'>
-        <NavLink>Residential Cleaning</NavLink>
+        <NavLink>Find Services</NavLink>
         </li>
 
         <li className='my-2 text-[15px]'>
-        <NavLink>Commercial Cleaning</NavLink>
+        <NavLink>How it Works</NavLink>
         </li>
 
         <li className='my-2 text-[15px]'>
-        <NavLink>Specialised Cleaning</NavLink>
+        <NavLink>Verified Vendor</NavLink>
         </li>
 
                 <li className='my-2 text-[15px]'>
-        <NavLink>Move-in/Move-out</NavLink>
+        <NavLink>Customer Reviews</NavLink>
         </li>
     </ul>
 
     <ul>
       <p className='text-[18px] text-gray-600'>For Business</p>
       <li className='my-2 text-[15px]'>
-        <NavLink>About</NavLink>
+        <NavLink>List Your Business</NavLink>
       </li>
 
       <li className='my-2 text-[15px]'>
@@ -58,7 +58,7 @@ const Footer = () => {
       </li>
 
       <li className='my-2 text-[15px]'>
-        <NavLink>Privacy Policy</NavLink>
+        <NavLink>Get Verified</NavLink>
       </li>
 
       <li className='my-2 text-[15px]'>
@@ -77,6 +77,10 @@ const Footer = () => {
       </li>
 
       <li className='my-2 text-[15px]'>
+        <NavLink>Privacy Policy</NavLink>
+      </li>
+
+      <li className='my-2 text-[15px]'>
         <NavLink>FAQ</NavLink>
       </li>
 
@@ -86,7 +90,7 @@ const Footer = () => {
     </nav>
     
     <div className='flex justify-between md:p-7 p-5 border-t bo border-t-gray-600'>
-      <p>© El Sali 2025.</p>
+      <p>© HustleHub.</p>
       <div className='flex justify-between md:gap-5 gap-2'>
         
       </div>
