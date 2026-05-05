@@ -29,7 +29,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
-        className="relative md:bg-cover md:bg-center pt-50 mx-auto"
+        className="relative md:bg-cover md:bg-center pt-50 mx-auto pb-10"
         style={{ backgroundImage: `url(${back})` }}>  
 
     <div className='md:flex justify-between px-5'>
@@ -105,20 +105,6 @@ const Hero = () => {
     </div>
     </div>
 
-        <div className='md:flex justify-between items-center bg-white/30 p-3'>
-        <div className='grid md:grid-cols-4 grid-cols-2 justify-between items-center text-white gap-3'>
-          {["WhatsApp", "Instagram", "HustleHub Verified Badge", "Facebook"].map((tag) => (
-              <span
-                key={tag}
-                className='font-bold'
-              >
-                {tag}
-              </span>
-            ))}
-        </div>
-
-        <button className='bg-orange-500 text-white p-2 rounded-2xl'>List Your Business Free</button>
-        </div>
       </motion.div>
     </>
   );
