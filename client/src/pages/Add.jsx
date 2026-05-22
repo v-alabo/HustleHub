@@ -132,7 +132,7 @@ const Add = () => {
     }));
   };
 
-  const baseUrl = "http://localhost:2006";
+  const baseUrl = "https://hustlehub-sfs4.onrender.com";
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -52,7 +52,7 @@ const Services = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const baseUrl = "http://localhost:2006";
+  const baseUrl = "https://hustlehub-sfs4.onrender.com";
 
   useEffect(() => {
     const fetchBusinesses = async () => {

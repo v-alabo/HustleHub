@@ -11,7 +11,7 @@ const Dashboard = () => {
   const [vendor, setVendor] = useState(null);
 const [loading, setLoading] = useState(true);
 
-const baseUrl = "http://localhost:2006";
+const baseUrl = "https://hustlehub-sfs4.onrender.com";
 
 useEffect(() => {
   const fetchBusiness = async () => {
