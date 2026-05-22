@@ -125,7 +125,7 @@ const Dashboard = () => {
   }
 
   return (
-    <motion.div className="bg-stone-100 md:pt-0 pt-21">
+    <motion.div className="bg-stone-100 md:pt-0 pt-17">
       <div
         className="p-5 relative bg-cover backdrop-blur-sm"
         style={{ backgroundImage: `url(${backd})` }}
