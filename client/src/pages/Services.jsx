@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { ThumbsDown, ThumbsUp } from "lucide-react";
+import { ThumbsDown, ThumbsUp, Verified } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const serviceCategorys = [
   "Food Vendors",
@@ -141,7 +142,7 @@ const Services = () => {
   };
 
   if (loading) {
-    return <p>Loading businesses...</p>;
+    return <Spinner/>
   }
 
   return (
@@ -332,8 +333,8 @@ const Services = () => {
                       className="w-full object-cover overflow-hidden"
                     />
                     {service.verified && (
-                      <p className="absolute top-4 left-4 bg-gray-200 text-green-600 py-1 px-5 text-xs rounded-xl">
-                        Verified
+                      <p className="absolute top-4 right-4 bg-gray-200 text-green-600 p-1 text-xs rounded-xl">
+                        <Verified />
                       </p>
                     )}
                     <p className="text-md text-white absolute bottom-5 right-5 font-extrabold">

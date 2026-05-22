@@ -1,11 +1,12 @@
 import { Schema, model } from "mongoose";
 
 const businessSchema = new Schema(
+
   {
     businessImg: {
       type: String,
     },
-    
+
     ownerImg: {
       type: String,
     },
@@ -14,6 +15,11 @@ const businessSchema = new Schema(
       type: String,
       required: true,
       trim: true,
+    },
+
+    slug: {
+      type: String,
+      required: true,
     },
 
     ownerName: {
@@ -105,5 +111,14 @@ const businessSchema = new Schema(
     timestamps: true,
   }
 );
+
+businessSchema.pre("save", function (next) {
+  this.slug = this.businessName
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-");
+
+  next();
+});
 
 export default model("Business", businessSchema);

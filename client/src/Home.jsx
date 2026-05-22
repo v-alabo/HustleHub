@@ -5,7 +5,6 @@ import Tut from './pages/Tut';
 import Vendor from './pages/Vendor';
 import Review from './pages/Review';
 import Info from './pages/Info';
-import Dashboard from './pages/Dashboard';
 
 const Home = () => {
   return (
@@ -16,7 +15,6 @@ const Home = () => {
       <Vendor/>
       <Review/>
       <Info/>
-      <Dashboard/>
     </div>
   );
 }

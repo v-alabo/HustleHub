@@ -1,4 +1,5 @@
 import Business from "../models/business.js";
+import Review from "../models/review.js";
 
 export const addBusiness = async (req, res) => {
   try {
@@ -171,6 +172,47 @@ export const searchBusiness = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const saveReview = async (req, res) => {
+  try {
+
+    const { slug, name, message } = req.body;
+
+    const review = await Review.create({
+      slug,
+      name,
+      message,
+      img: req.file?.path || "",
+    });
+
+    res.status(201).json({
+      success: true,
+      review,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+    console.error("Error:", error)
+  }
+};
+
+export const getReview = async (req, res) => {
+  try {
+    const { slug } = req.query;
+
+    const reviews = await Review.find({ slug });
+
+    res.json({
+      success: true,
+      reviews,
+    });
+  } catch (error) {
+    res.status(500).json({
       message: error.message,
     });
   }

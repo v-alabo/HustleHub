@@ -235,7 +235,7 @@ const Add = () => {
   };
 
   return (
-    <motion.div className="py-10">
+    <motion.div className="pt-23">
       <div className="flex flex-col text-center gap-1 items-center my-5">
         <div className="w-12 h-12 bg-orange-200 rounded-md"></div>
         <h1 className="text-2xl">List Your Business</h1>

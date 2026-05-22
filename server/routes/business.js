@@ -1,5 +1,5 @@
 import express from "express";
-import { addBusiness, allBusiness, getBusiness, searchBusiness } from "../controllers/business.js";
+import { addBusiness, allBusiness, getBusiness, searchBusiness, saveReview, getReview } from "../controllers/business.js";
 import upload from "../middleware/upload.js";
 
 const router = express.Router();
@@ -13,7 +13,10 @@ router.post(
     addBusiness
   );
 router.get("/all", allBusiness);
+router.get("/search", searchBusiness)
+router.post("/save-reviews", upload.single("img"), saveReview);
+router.get("/reviews", getReview);
+
 router.get("/:id", getBusiness);
-router.search("/search", searchBusiness)
 
 export default router;

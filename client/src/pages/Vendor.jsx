@@ -1,47 +1,37 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion'
 import food from '../assets/vendor/food.jpg'
 import barber from '../assets/vendor/barber.jpg'
 import mechanic from '../assets/vendor/mechanic.jpg'
 import dispatch from '../assets/vendor/dispatch.jpg'
-import { ThumbsDown, ThumbsUp } from 'lucide-react';
+import { ThumbsDown, ThumbsUp, Verified } from 'lucide-react';
 
-const vendors = [
-    {
-      name: "Mama Tunde Buka",
-      service: "Food Vendor",
-      location: "Abuloma, Trans-Amadi",
-      keyword: "Bole, Suya, Shawarma & More",
-      img: food,
-      cat: "Verified"
-    },
-    {
-      name: "Chidi Cuts Barbershop",  
-      service: "Barber & Stylist",
-      location: "Cambell, Pt. Odili Rd",
-      keyword: "Haircuts, Braids & Styling",
-      img: barber,
-      cat: "Verified"
-    },
-    {
-        name: "Emeka AutoWorks",
-        service: "Auto Mechanic",
-        location: "Sakrikpo, GRA",
-        keyword: "Repairs, Servicing & Diagnostics",
-        img: mechanic,
-        cat: "Verified"
-      },    
-      {
-        name: "FastGo Dispatch",
-        service: "Dispatch Riders",
-        location: "Ojudu, Akpajo",
-        keyword: "Fast & Reliable Deliveries",
-        img: dispatch,
-        cat: "Verified"
-      },
-  ];
 
 const Vendor = () => {
+
+  const [ data, setData ] =useState([]);
+  const baseUrl = "https://hustlehub-sfs4.onrender.com";
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchBusinesses = async () => {
+      try {
+        const response = await fetch(`${baseUrl}/business/all`);
+
+        const result = await response.json();
+
+        if (result.success) {
+          setData(result.businesses);
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+      }
+    };
+
+    fetchBusinesses();
+  }, []);
 
   return (
     <motion.div
@@ -64,16 +54,30 @@ const Vendor = () => {
 
     <div>
         <div className='grid md:grid-cols-4 grid-cols-1 py-10 px-5 gap-5'>
-            {vendors.map((vendor, index) =>{
+            {data.map((vendor) =>{
                 return(
-            <div className='relative overflow-hidden rounded-2xl bg-white' key={index}>
-                <img src={vendor.img} alt="" className='object-cover overflow-hidden' />
-                <p className='absolute top-4 left-4 bg-gray-200 text-black py-1 px-5 text-xs rounded-xl'>{vendor.cat}</p>
+            <div onClick={() => navigate(`/dashboard/${vendor._id}`)}
+            className='relative overflow-hidden rounded-2xl bg-white' key={vendor._id}>
+                <img src={vendor.ownerImg} alt="" className='object-cover overflow-hidden' />
+                {vendor.verified && (
+                      <p className="absolute top-4 right-4 bg-gray-200 text-green-600 p-1 text-xs rounded-xl ml-4 h-fit">
+                        <Verified className="size-7" />
+                      </p>
+                    )} 
             <div className='p-3'>
-            <h3 className='md:text-xl text-lg font-semibold'>{vendor.name}</h3>
+            <h3 className='md:text-xl text-lg font-semibold'>{vendor.businessName}</h3>
             <p className='text-sm text-orange-500 font-light'>{vendor.service}</p>
-            <p className='text-sm'>{vendor.location}</p>
-            <p className='text-sm'>{vendor.keyword}</p>
+            <p className='text-sm'>{vendor.address}</p>
+            <div className="grid grid-cols-3 gap-3 mt-5">
+                      {vendor.keywords.map((word, i) => (
+                        <p
+                          className="text-sm text-center text-orange-500 px-4 py-1 rounded-full bg-orange-300/10 border border-orange-300/20"
+                          key={i}
+                        >
+                          {word}
+                        </p>
+                      ))}
+                    </div>
             </div>
             <div className='p-3 flex justify-between gap-5'>
                 <button className='bg-green-400 text-white px-5 py-2 rounded-2xl w-full'>WhatsApp</button>
