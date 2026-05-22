@@ -1,8 +1,10 @@
 import React, {useState}  from 'react';
+import { useNavigate, Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
   return (
     <header className="w-full absolute top-0 left-0 p-5 z-50 bg-white">
      <nav className='flex justify-between items-center'>
@@ -23,26 +25,30 @@ const Header = () => {
 
         <ul className='hidden md:flex gap-20 py-3'>
             <li><HashLink smooth to="/#about">About Us</HashLink></li>
-            <li><HashLink smooth to="/#services">Find Services</HashLink></li>
+            <li onClick={() => navigate("/services")}>Find Services</li>
             <li><HashLink smooth to="/#contact">Contact Us</HashLink></li>
         </ul>
 
-        <button className='bg-orange-500 text-white p-3 rounded-2xl md:flex hidden'>Add Business</button>
+
+        <button onClick={() => navigate("/list-business")}
+        className='bg-orange-500 text-white p-3 rounded-2xl md:flex hidden'>Add Business</button>
+
 
               <ul
           className={`
             md:hidden
             fixed top-17 right-0 h-full w-full bg-black text-white p-10
-            flex flex-col gap-10 items-center text-[20px] font-semibold
+            flex flex-col gap-10 items-center text-[20px] cursor-pointer font-semibold
             opacity-85 transform transition-transform duration-300 ease-in-out
             ${menuOpen ? 'translate-x-0' : 'translate-x-full'}
             z-50
           `}
         >
             <li><HashLink smooth to="/#about">About Us</HashLink></li>
-            <li><HashLink smooth to="/#services">Find Services</HashLink></li>
+            <li onClick={() => navigate("/services")}>Find Services</li>
             <li><HashLink smooth to="/#contact">Contact Us</HashLink></li>
-           <button className='bg-orange-500 text-white p-3 rounded-2xl'>Add Business</button>
+           <button onClick={() => navigate("/list-business")}
+           className='bg-orange-500 text-white p-3 rounded-2xl'>Add Business</button>
         </ul>      
       </nav> 
     </header>

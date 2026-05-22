@@ -1,3 +1,11 @@
+
+import food from "../assets/dp2.jpg";
+import barber from "../assets//dp1.jpg";
+import mechanic from "../assets/dp4.jpg";
+import dispatch from "../assets/dp3.jpg";
+import food from "../assets/dp2.jpg";
+import dp from "../assets/vendor/food.jpg";
+
 <section>
 <div className='my-5 md:text-end text-center'>
 <p className='text-md text-white uppercase'>Join HustleHub Today</p>
@@ -27,3 +35,89 @@
 </article>
 </div>
 </section> 
+
+const pips = [
+    {
+      id: 1,
+      name: "Mama Tunde Buka",
+      service: "Food Vendor",
+      location: "Abuloma",
+      lga: "Port Harcourt",
+      keyword: ["Bole", "Suya", "Shawarma"],
+      img: food,
+      cat: "Verified",
+      upvotes: 10,
+      downvotes: 1,
+    },
+    {
+      id: 2,
+      name: "Chidi Cuts Barbershop",
+      service: "Barber & Stylist",
+      location: "Cambell",
+      lga: "Andoni",
+      keyword: ["Haircuts", "Braids", "Styling"],
+      img: barber,
+      cat: "Verified",
+      upvotes: 10,
+      downvotes: 1,
+    },
+    {
+      id: 3,
+      name: "Emeka AutoWorks",
+      service: "Auto Mechanic",
+      location: "Sakrikpo",
+      lga: "Ikwerre",
+      keyword: ["Repairs", "Servicing", "Diagnostics"],
+      img: mechanic,
+      cat: "Verified",
+      upvotes: 5,
+      downvotes: 1,
+    },
+    {
+      id: 4,
+      name: "FastGo Dispatch",
+      service: "Dispatch Riders",
+      location: "Ojudu",
+      lga: "khana",
+      keyword: ["Fast", "Reliable", "Deliveries"],
+      img: dispatch,
+      cat: "Verified",
+      upvotes: 2,
+      downvotes: 5,
+    },
+  ];
+
+  const vendors = [
+    {
+      id: 1,
+      name: "Mama Tunde Buka",
+      service: "Food Vendor",
+      description:
+        "Serving the best local Nigerian dishes since 2015. Our bole and groundnut is legendary in Surulere. We also do party catering and bulk orders via WhatsApp.",
+      location: "Abuloma",
+      lga: "Trans-Amadi",
+      keywords: ["Bole", "Rice", "Chicken"],
+      services: [
+        {
+          service: "Jollof Package",
+          price: "6,000",
+        },
+        {
+          service: "Egusi Package",
+          price: "7,000",
+        },
+        {
+          service: "Gbadun Package",
+          price: "10,000",
+        },
+      ],
+      img: food,
+      dp: dp,
+      cat: "Verified",
+      upvotes: 10,
+      downvotes: 1,
+      weekday: "7:00am - 10:00pm",
+      weekend: "10:00am - 11:00pm",
+      phol: "8:00am - 11:00pm",
+    },
+  ];

@@ -29,7 +29,7 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0 }}
         transition={{ duration: 2 }}
-        className="relative md:bg-cover md:bg-center pt-50 mx-auto pb-10"
+        className="relative md:bg-cover md:bg-center pt-40 mx-auto pb-10"
         style={{ backgroundImage: `url(${back})` }}>  
 
     <div className='md:flex justify-between px-5'>
