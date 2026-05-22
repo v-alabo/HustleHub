@@ -1,0 +1,44 @@
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.local
+.env.development
+.env.production
+
+# logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# build output
+dist/
+build/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor settings
+.vscode/
+.idea/
+
+# uploads (important if you're storing images locally)
+uploads/
+public/uploads/
+
+# coverage
+coverage/
+
+# runtime
+.pids
+*.pid
+*.seed
+*.pid.lock
+
+# optional
+.vercel/
+.netlify/

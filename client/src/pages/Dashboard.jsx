@@ -155,13 +155,13 @@ const Dashboard = () => {
             <div className="flex gap-1 justify-center items-center">
               <p className="text-start md:text-md text-sm text-white font-bold">
                 {calculateRating(vendor.upvotes, vendor.downvotes)}
-                <span className="md:text-xs text-[10px] text-stone-300 font-extralight ml-1">
+                <span className="md:text-sm text-xs text-stone-300 font-extralight ml-1">
                   ({totalReview(vendor.upvotes, vendor.downvotes)} reviews)
                 </span>
               </p>
               <span className="text-white/40 font-extrabold">|</span>
               <p className="md:text-sm text-xs text-white font-extralight">
-                {vendor.address}, {vendor.lga}
+                {vendor.area}, {vendor.lga}
               </p>
             </div>
           </div>
@@ -359,13 +359,13 @@ const Dashboard = () => {
                   <div className="flex justify-between gap-3">
                     <button
                       onClick={() => handleUpvote(index)}
-                      className="bg-stone-200 border border-stone-300 px-3 py-1 rounded-md w-1/2 flex items-center justify-center"
+                      className="bg-stone-100 border border-stone-200 px-3 py-1 rounded-md w-1/2 flex items-center justify-center"
                     >
                       <ThumbsUp className="text-green-600 size-5" />
                     </button>
                     <button
                       onClick={() => handleDownvote(index)}
-                      className="bg-stone-200 border border-stone-300 px-3 py-3 rounded-md w-1/2 flex items-center justify-center"
+                      className="bg-stone-100 border border-stone-300 px-3 py-3 rounded-md w-1/2 flex items-center justify-center"
                     >
                       <ThumbsDown className="text-red-600 size-5" />
                     </button>

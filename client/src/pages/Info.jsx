@@ -14,7 +14,7 @@ const Info = () => {
     style={{ backgroundImage: `url(${back2})` }}>
 
     <div className="absolute inset-0 bg-linear-to-r from-orange-400/90 via-orange-200/80 to-orange-400/90"></div>
-    <div className='relative z-99'>
+    <div className='relative z-10'>
     <div className='grid md:grid-cols-2 p-5 justify-between gap-10'>
           <section className=''>
       <div className='my-5 md:text-start text-center'>

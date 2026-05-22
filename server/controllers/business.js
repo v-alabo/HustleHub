@@ -19,6 +19,7 @@ export const addBusiness = async (req, res) => {
       instagram,
       category,
       lga,
+      area,
       address,
       description,
       agree,
@@ -54,6 +55,7 @@ export const addBusiness = async (req, res) => {
       !instagram ||
       !category ||
       !lga ||
+      !area ||
       !address ||
       !description 
     ) {
@@ -82,6 +84,7 @@ export const addBusiness = async (req, res) => {
       instagram,
       category,
       lga,
+      area,
       address,
       description,
       keywords,

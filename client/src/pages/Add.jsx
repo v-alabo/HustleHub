@@ -2,8 +2,174 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Info } from "lucide-react";
 
+export const locations = {
+  "Port Harcourt": {
+    areas: [
+      "Trans-Amadi",
+      "GRA Phase 1",
+      "GRA Phase 2",
+      "Old GRA",
+      "D-Line",
+      "Mile 1",
+      "Mile 2",
+      "Mile 3",
+      "Mile 4",
+      "Mile 5",
+      "Rumuola",
+      "Rumuokwuta",
+      "Rumuigbo",
+      "Rumueme",
+      "Rumuokoro",
+      "Borokiri",
+      "Abuloma",
+      "Amadi-Ama",
+      "Woji",
+      "Elekahia",
+    ],
+  },
+
+  "Obio/Akpor": {
+    areas: [
+      "Rumuokoro",
+      "Rumuodara",
+      "Choba",
+      "Rumuigbo",
+      "Rumueme",
+      "Eliozu",
+      "Rumuola",
+      "Rumuokwurusi",
+      "Rukpokwu",
+      "Ozuoba",
+      "Alakahia",
+      "Rumuokparali",
+      "Rumuekini",
+    ],
+  },
+
+  Eleme: {
+    areas: ["Alesa", "Alode", "Ogale", "Onne", "Akpajo", "Ebubu", "Aleto"],
+  },
+
+  Ikwerre: {
+    areas: [
+      "Isiokpo",
+      "Omagwa",
+      "Aluu",
+      "Ubima",
+      "Omuanwa",
+      "Omerelu",
+      "Ozuoha",
+    ],
+  },
+
+  Okrika: {
+    areas: [
+      "Okrika Town",
+      "Oba-Ama",
+      "Ogoloma",
+      "Kalio-Ama",
+      "Bolo-Ama",
+      "Ibaka",
+    ],
+  },
+
+  OguBolo: {
+    areas: ["Ogu Town", "Bolo Town", "Ele", "Wakama", "Okoloma"],
+  },
+
+  Emohua: {
+    areas: ["Emohua Town", "Rumuji", "Ogbakiri", "Ibaa", "Obelle", "Rumuekpe"],
+  },
+
+  Etche: {
+    areas: [
+      "Okehi",
+      "Ozuzu",
+      "Chokocho",
+      "Igbodo",
+      "Afara",
+      "Obite",
+      "Umuechem",
+    ],
+  },
+
+  Oyigbo: {
+    areas: ["Afam", "Obigbo", "Oyigbo Town", "Okoloma", "Izuoma"],
+  },
+
+  Khana: {
+    areas: ["Bori", "Kpor", "Bane", "Taabaa", "Sii", "Lueku", "Nweol"],
+  },
+
+  Gokana: {
+    areas: ["Bodo", "Bomu", "K-Dere", "B-Dere", "Yeghe", "Giokoo", "Nweol"],
+  },
+
+  Andoni: {
+    areas: ["Ngo Town", "Asarama", "Unyeada", "Agwut-Obolo", "Ibot-Irem"],
+  },
+
+  Bonny: {
+    areas: ["Bonny Island", "Finima", "Abalamabie", "Orosikiri"],
+  },
+
+  AkukuToru: {
+    areas: ["Abonnema", "Bakana", "Kula", "Obonoma", "Tuma"],
+  },
+
+  AsariToru: {
+    areas: ["Buguma", "Degema", "Isaka", "Tema", "Kporghor"],
+  },
+
+  Degema: {
+    areas: ["Degema Town", "Bakana", "Ke", "Tombia", "Abonnema"],
+  },
+
+  AbuaOdual: {
+    areas: ["Abua Central", "Emughan", "Ogbema", "Okpeden", "Odiemerenyi"],
+  },
+
+  AhoadaEast: {
+    areas: ["Ahoada Town", "Ihuowo", "Odiabidi", "Ogbo", "Ula-Upata"],
+  },
+
+  AhoadaWest: {
+    areas: ["Akinima", "Okarki", "Joinkrama", "Ebrass", "Igbogene"],
+  },
+
+  OgbaEgbemaNdoni: {
+    areas: ["Omoku", "Egi", "Ndoni", "Oboburu", "Igburu"],
+  },
+
+  OpoboNkoro: {
+    areas: ["Opobo Town", "Nkoro", "Queenstown", "Kalaibiama"],
+  },
+
+  Tai: {
+    areas: ["Saakpenwa", "Nonwa", "Korokoro", "Kpite"],
+  },
+
+  Omuma: {
+    areas: ["Eberi", "Umuabali", "Ofeh", "Obibi"],
+  },
+};
+
+export const getLocationOptions = (type, parent = null) => {
+  if (type === "lga") {
+    return Object.keys(locations);
+  }
+
+  if (type === "area" && parent) {
+    return locations[parent]?.areas || [];
+  }
+
+  return [];
+};
+
 const Add = () => {
   const [activeTab, setActiveTab] = useState("business");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   const [businessLogo, setBusinessLogo] = useState(null);
   const [ownerPhoto, setOwnerPhoto] = useState(null);
@@ -80,11 +246,11 @@ const Add = () => {
 
   const handleBusinessHoursChange = (index, e) => {
     const { name, value } = e.target;
-  
+
     const updated = [...formData.businessHours];
     updated[index][name] = value;
-  
-    setFormData(prev => ({
+
+    setFormData((prev) => ({
       ...prev,
       businessHours: updated,
     }));
@@ -99,6 +265,7 @@ const Add = () => {
     instagram: "",
     category: "",
     lga: "",
+    area: "",
     address: "",
     description: "",
     keywords: [],
@@ -118,9 +285,6 @@ const Add = () => {
     ],
     agree: false,
   });
-
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -149,6 +313,7 @@ const Add = () => {
       !formData.instagram ||
       !formData.category ||
       !formData.lga ||
+      !formData.area ||
       !formData.address ||
       !formData.description
     ) {
@@ -167,10 +332,10 @@ const Add = () => {
     submitData.append("instagram", formData.instagram);
     submitData.append("category", formData.category);
     submitData.append("lga", formData.lga);
+    submitData.append("area", formData.area);
     submitData.append("address", formData.address);
     submitData.append("description", formData.description);
     submitData.append("agree", formData.agree);
-
     submitData.append("keywords", JSON.stringify(formData.keywords));
     submitData.append("services", JSON.stringify(formData.services));
     submitData.append("businessHours", JSON.stringify(formData.businessHours));
@@ -208,6 +373,7 @@ const Add = () => {
         instagram: "",
         category: "",
         lga: "",
+        area: "",
         address: "",
         description: "",
         keywords: [],
@@ -235,7 +401,7 @@ const Add = () => {
   };
 
   return (
-    <motion.div className="pt-23">
+    <motion.div className="md:pt-20 pt-30">
       <div className="flex flex-col text-center gap-1 items-center my-5">
         <div className="w-12 h-12 bg-orange-200 rounded-md"></div>
         <h1 className="text-2xl">List Your Business</h1>
@@ -246,8 +412,8 @@ const Add = () => {
         </p>
       </div>
       <div className="bg-stone-50">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-5 px-3 py-5 mb-10">
+        <div className="max-w-5xl mx-auto pb-20">
+          <div className="grid md:grid-cols-3 gap-5 px-3 md:py-10 py-20">
             <div className="flex flex-col items-center text-center bg-white p-5 rounded-lg gap-2 border border-stone-100">
               <div className="w-10 h-10 bg-green-200 rounded-md text-center"></div>
               <h1 className="text-md">WhatsApp Leads</h1>
@@ -275,7 +441,7 @@ const Add = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-2xl border border-stone-100 p-5">
+          <div className="bg-white rounded-2xl border border-stone-100 px-5 py-7">
             <h2 className="text-lg font-semibold mb-1">Business Information</h2>
             <p className="text-sm text-stone-300 mb-8">
               Fill in your details below. All fields are required.
@@ -514,7 +680,7 @@ const Add = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 md:gap-20 gap-5 mb-5">
+              <div className="grid grid-cols-3 md:gap-20 gap-5 mb-5">
                 <div className="flex flex-col">
                   <label
                     htmlFor=""
@@ -548,35 +714,42 @@ const Add = () => {
                     name="lga"
                     value={formData.lga}
                     onChange={handleChange}
-                    className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm text-stone-500 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
+                    className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
                   >
                     <option value="">Select LGA</option>
 
-                    <option value="Abua/Odual">Abua/Odual</option>
-                    <option value="Ahoada East">Ahoada East</option>
-                    <option value="Ahoada West">Ahoada West</option>
-                    <option value="Akuku-Toru">Akuku-Toru</option>
-                    <option value="Andoni">Andoni</option>
-                    <option value="Asari-Toru">Asari-Toru</option>
-                    <option value="Bonny">Bonny</option>
-                    <option value="Degema">Degema</option>
-                    <option value="Eleme">Eleme</option>
-                    <option value="Emohua">Emohua</option>
-                    <option value="Etche">Etche</option>
-                    <option value="Gokana">Gokana</option>
-                    <option value="Ikwerre">Ikwerre</option>
-                    <option value="Khana">Khana</option>
-                    <option value="Obio/Akpor">Obio/Akpor</option>
-                    <option value="Ogba/Egbema/Ndoni">Ogba/Egbema/Ndoni</option>
-                    <option value="Ogu/Bolo">Ogu/Bolo</option>
-                    <option value="Okrika">Okrika</option>
-                    <option value="Omuma">Omuma</option>
-                    <option value="Opobo/Nkoro">Opobo/Nkoro</option>
-                    <option value="Oyigbo">Oyigbo</option>
-                    <option value="Port Harcourt">Port Harcourt</option>
-                    <option value="Tai">Tai</option>
+                    {getLocationOptions("lga").map((lga) => (
+                      <option key={lga} value={lga}>
+                        {lga}
+                      </option>
+                    ))}
                   </select>
                 </div>
+
+              <div className="flex flex-col mb-5">
+                <label
+                  htmlFor=""
+                  className="md:text-md text-sm font-medium mb-3"
+                >
+                  Area
+                </label>
+                <select
+                  name="area"
+                  value={formData.area}
+                  onChange={handleChange}
+                  disabled={!formData.lga}
+                  className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
+                >
+                  <option value="">Select Area</option>
+
+                  {getLocationOptions("area", formData.lga).map((area) => (
+                    <option key={area} value={area}>
+                      {area}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
               </div>
 
               <div className="flex flex-col gap-3">
@@ -655,16 +828,82 @@ const Add = () => {
               </div>
 
               <div className="flex flex-col gap-3 mt-5">
+                <label htmlFor="" className="md:text-md text-sm font-semibold">
+                  Business Hours
+                </label>
+                {formData.businessHours.map((item, index) => (
+                  <div
+                    className="grid grid-cols-3 md:gap-20 gap-5 mb-5"
+                    key={index}
+                  >
+                    <div className="flex flex-col gap-3">
+                      <label
+                        htmlFor=""
+                        className="text-sm font-medium text-stone-500"
+                      >
+                        Weekdays
+                      </label>
+                      <input
+                        name="weekday"
+                        type="text"
+                        value={item.weekday}
+                        onChange={(e) => handleBusinessHoursChange(index, e)}
+                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
+                        placeholder="9:00am - 10:00pm"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      <label
+                        htmlFor=""
+                        className="text-sm font-medium text-stone-500"
+                      >
+                        Weekends
+                      </label>
+                      <input
+                        type="text"
+                        name="weekend"
+                        value={item.weekend}
+                        onChange={(e) => handleBusinessHoursChange(index, e)}
+                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
+                        placeholder="10:00am - 11:00pm"
+                      />
+                    </div>
+
+                    <div className="flex flex-col gap-3">
+                      <label
+                        htmlFor=""
+                        className="text-sm font-medium text-stone-500"
+                      >
+                        Public holidays
+                      </label>
+                      <input
+                        type="text"
+                        name="pholiday"
+                        value={item.pholiday}
+                        onChange={(e) => handleBusinessHoursChange(index, e)}
+                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
+                        placeholder="9:00am - 8:00pm"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-3 mt-5">
                 <label htmlFor="" className="md:text-md text-sm font-medium">
                   Services & Pricing{" "}
                   <span className="text-stone-400">(optional)</span>
                 </label>
                 {formData.services.map((item, index) => (
-                  <div className="grid grid-cols-2 md:gap-20 gap-5 mb-5" key={index}>
+                  <div
+                    className="grid grid-cols-2 md:gap-20 gap-5 mb-5"
+                    key={index}
+                  >
                     <div className="flex flex-col gap-3">
                       <label
                         htmlFor=""
-                        className="md:text-md text-sm font-medium"
+                        className="text-sm font-medium text-stone-500"
                       >
                         Service
                       </label>
@@ -681,7 +920,7 @@ const Add = () => {
                     <div className="flex flex-col gap-3">
                       <label
                         htmlFor=""
-                        className="md:text-md text-sm font-medium"
+                        className="text-sm font-medium text-stone-500"
                       >
                         Price
                       </label>
@@ -705,66 +944,6 @@ const Add = () => {
                     Add
                   </button>
                 </div>
-              </div>
-
-              <div className="flex flex-col gap-3 mt-5">
-                <label htmlFor="" className="md:text-md text-sm font-medium">
-                  Business Hours
-                </label>
-                {formData.businessHours.map((item, index) => (
-                  <div className="grid grid-cols-3 md:gap-20 gap-5 mb-5" key={index}>
-                    <div className="flex flex-col gap-3">
-                      <label
-                        htmlFor=""
-                        className="md:text-md text-sm font-medium"
-                      >
-                        Weekdays
-                      </label>
-                      <input
-                        name="weekday"
-                        type="text"
-                        value={item.weekday}
-                        onChange={(e) => handleBusinessHoursChange(index, e)}
-                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
-                        placeholder="9:00am - 10:00pm"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-3">
-                      <label
-                        htmlFor=""
-                        className="md:text-md text-sm font-medium"
-                      >
-                        Weekends
-                      </label>
-                      <input
-                        type="text"
-                        name="weekend"
-                        value={item.weekend}
-                        onChange={(e) => handleBusinessHoursChange(index, e)}
-                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
-                        placeholder="10:00am - 11:00pm"
-                      />
-                    </div>
-
-                    <div className="flex flex-col gap-3">
-                      <label
-                        htmlFor=""
-                        className="md:text-md text-sm font-medium"
-                      >
-                        Public holidays
-                      </label>
-                      <input
-                        type="text"
-                        name="pholiday"
-                        value={item.pholiday}
-                        onChange={(e) => handleBusinessHoursChange(index, e)}
-                        className="w-full px-4  md:py-3 py-2 bg-stone-50 border border-stone-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-300 resize-none"
-                        placeholder="9:00am - 8:00pm"
-                      />
-                    </div>
-                  </div>
-                ))}
               </div>
 
               <div className="flex items-start gap-3 pt-2">

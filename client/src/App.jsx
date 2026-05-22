@@ -6,11 +6,13 @@ import Home from './Home';
 import Add from './pages/Add';
 import Services from './pages/Services';
 import Dashboard from './pages/Dashboard';
+import ScrollToTop from "./components/ScrollTop.jsx";
 
 function App() {
 
   return (
     <>
+    <ScrollToTop />
       <Routes>
       <Route path="/" element={<Layout/>}>
       <Route index element={<Home/>} />

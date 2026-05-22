@@ -121,3 +121,17 @@ const pips = [
       phol: "8:00am - 11:00pm",
     },
   ];
+
+  <select
+  name="lga"
+  value={formData.lga}
+  onChange={handleChange}
+>
+  <option value="">Select LGA</option>
+
+  {getLocationOptions("lga").map((lga) => (
+    <option key={lga} value={lga}>
+      {lga}
+    </option>
+  ))}
+</select>

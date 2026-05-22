@@ -60,6 +60,11 @@ const businessSchema = new Schema(
       required: true,
     },
 
+    area: {
+      type: String,
+      required: true,
+    },    
+
     address: {
       type: String,
       required: true,

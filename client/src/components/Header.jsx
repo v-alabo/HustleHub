@@ -1,10 +1,26 @@
-import React, {useState}  from 'react';
-import { useNavigate, Link } from "react-router-dom";
+import React, { useState, useEffect }  from 'react';
+import { useNavigate } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+      document.body.style.position = "fixed";
+      document.body.style.width = "100%";
+    } else {
+      document.body.style.overflow = "";
+      document.body.style.position = "";
+      document.body.style.width = "";
+    }
+  
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [menuOpen]);
 
   const handleNav = (path) => {
     setMenuOpen(false);
@@ -25,7 +41,7 @@ const Header = () => {
 
       <div className="md:hidden">
           <button
-            className="text-black text-[30px] z-50 relative"
+            className="text-white text-[30px] z-50 relative"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? "x" : "☰"}
@@ -47,7 +63,7 @@ const Header = () => {
 
 <div
 className={`
-  fixed inset-0 z-40 bg-black/90 flex flex-col items-center pt-30 gap-8
+  fixed inset-0 z-50 bg-black/90 flex flex-col items-center pt-30 gap-8
   text-white text-xl font-semibold
   transition-all duration-300 ease-in-out
   ${menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'}
