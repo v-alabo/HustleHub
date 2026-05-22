@@ -12,7 +12,7 @@ const Header = () => {
   };
   return (
     <>
-    <header className="w-full fixed top-0 left-0 p-5 z-99  bg-black/20 backdrop-blur-md border-b border-white/20">
+    <header className="w-full fixed top-0 left-0 p-3 z-99  bg-black/20 backdrop-blur-md border-b border-white/20">
      <nav className='flex justify-between items-center'>
       <div onClick={() => handleNav("/")}
       className='flex justify-between gap-2'>

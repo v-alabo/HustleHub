@@ -146,7 +146,7 @@ const Services = () => {
   }
 
   return (
-    <motion.div className="">
+    <motion.div className="md:pt-0 pt-20">
       <div className="md:flex p-5 justify-between items-center">
         <div className="md:text-start text-center my-5">
           <p className="text-lg text-orange-400 uppercase">Find Services</p>

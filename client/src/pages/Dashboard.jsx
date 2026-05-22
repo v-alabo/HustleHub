@@ -4,7 +4,14 @@ import { motion } from "framer-motion";
 import { formatDistanceToNow } from "date-fns";
 import backd from "../assets/backd1.jpg";
 import Spinner from "../components/Spinner";
-import { Camera, Save, Share, Verified, ThumbsDown, ThumbsUp } from "lucide-react";
+import {
+  Camera,
+  Save,
+  Share,
+  Verified,
+  ThumbsDown,
+  ThumbsUp,
+} from "lucide-react";
 
 const Dashboard = () => {
   const { id } = useParams();
@@ -133,7 +140,7 @@ const Dashboard = () => {
           </div>
           <div className="flex flex-col gap-2 ml-5 justify-center items-start">
             <div className="flex">
-              <h1 className="md:text-2xl text-md text-stone-50 font-extrabold">
+              <h1 className="md:text-2xl text-xl text-stone-50 font-extrabold">
                 {vendor.businessName}
               </h1>
               {vendor.verified && (
@@ -143,12 +150,12 @@ const Dashboard = () => {
               )}
             </div>
             <p className="md:text-xl text-md text-orange-300 font-semibold">
-              {vendor.service}
+              {vendor.category}
             </p>
             <div className="flex gap-1 justify-center items-center">
               <p className="text-start md:text-md text-sm text-white font-bold">
                 {calculateRating(vendor.upvotes, vendor.downvotes)}
-                <span className="md:text-sm text-[9px] text-stone-300 font-extralight">
+                <span className="md:text-xs text-[10px] text-stone-300 font-extralight ml-1">
                   ({totalReview(vendor.upvotes, vendor.downvotes)} reviews)
                 </span>
               </p>
@@ -173,21 +180,6 @@ const Dashboard = () => {
                 View on Instagram
               </button>
             </div>
-
-            <div className="flex justify-between gap-3">
-                      <button
-                        onClick={() => handleUpvote(index)}
-                        className="bg-stone-200 border border-stone-300 px-3 py-1 rounded-md w-1/2"
-                      >
-                        <ThumbsUp className="text-green-600 size-4" />
-                      </button>
-                      <button
-                        onClick={() => handleDownvote(index)}
-                        className="bg-stone-200 border border-stone-300 px-3 py-3 rounded-md w-1/2"
-                      >
-                        <ThumbsDown className="text-red-600 size-4" />
-                      </button>
-                    </div>
 
             <div className="grid grid-cols-2 gap-3">
               <button className="flex gap-5 p-3 items-center md:justify-center justify-between bg-stone-200 border border-stone-300 text-stone-600 font-bold rounded-2xl md:w-fit w-full">
@@ -363,6 +355,21 @@ const Dashboard = () => {
                     placeholder="Your Message"
                     id=""
                   ></textarea>
+
+                  <div className="flex justify-between gap-3">
+                    <button
+                      onClick={() => handleUpvote(index)}
+                      className="bg-stone-200 border border-stone-300 px-3 py-1 rounded-md w-1/2 flex items-center justify-center"
+                    >
+                      <ThumbsUp className="text-green-600 size-5" />
+                    </button>
+                    <button
+                      onClick={() => handleDownvote(index)}
+                      className="bg-stone-200 border border-stone-300 px-3 py-3 rounded-md w-1/2 flex items-center justify-center"
+                    >
+                      <ThumbsDown className="text-red-600 size-5" />
+                    </button>
+                  </div>
 
                   <button
                     onClick={submitReview}
